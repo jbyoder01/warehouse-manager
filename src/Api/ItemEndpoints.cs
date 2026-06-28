@@ -12,11 +12,13 @@ public static class ItemEndpoints
         // GET /items -> List all items
         group.MapGet("/", async (WarehouseDbContext db) => await db.Items.ToListAsync());
 
+        // GET /items/{id} -> Get a specific item by its id
         group.MapGet("/{id:int}", async (int id, WarehouseDbContext db) =>
             await db.Items.FindAsync(id) is Item item
                 ? Results.Ok(item)
                 : Results.NotFound());
 
+        // POST /items -> Create a new item
         group.MapPost("/", async (CreateItemDto dto, WarehouseDbContext db) =>
         {
             var item = new Item
