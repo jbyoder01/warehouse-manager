@@ -26,5 +26,6 @@ app.UseHttpsRedirection();
 
 app.MapItemEndpoints();
 app.MapLocationEndpoints();
+app.MapTransactionEndpoints();
 
 app.Run();
